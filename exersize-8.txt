@@ -1,0 +1,117 @@
+Exercise 8
+
+//Reflect the data model shown in schema/addressbook_denormalized.png 
+    within database decodemtl_addressbook
+
+ALTER TABLE entry ADD COLUMN employee_name VARCHAR(100); for each item, or:
+
+drop table entry;
+
+CREATE TABLE entry (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    addressBookId INT,
+    firstName VARCHAR(255),
+    lastName VARCHAR(255),
+    birthday DATETIME,
+    type ENUM('home', 'work', 'other'),
+    subtype ENUM('phone', 'address', 'email'),
+    contentLineOne VARCHAR(255),
+    contentLineTwo VARCHAR(255),
+    contentLineThree VARCHAR(255),
+    contentLineFour VARCHAR(255),
+    contentLineFive VARCHAR(255)
+    
+);
+
+drop table addressbook;
+
+create table addressbook (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    accountId INT,
+    name VARCHAR(255),
+    createdOn DATETIME,
+    modifiedOn DATETIME
+);
+
+drop table account;
+
+create table account (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255),
+    password VARCHAR(40),
+    createdOn DATETIME,
+    modifiedOn DATETIME
+);
+
+
+//Account.id is a primary auto-increment key
+
+
+//AddressBook.id is a primary auto-increment key
+
+
+//Entry.id is a primary auto-increment key
+
+
+//Entry.type is an ENUM column permitting home, work and other
+
+
+//Entry.subtype is an ENUM column permitting phone, address and email
+
+
++---------------------------------+
+| Tables_in_decodemtl_addressbook |
++---------------------------------+
+| account                         |
+| addressbook                     |
+| entry                           |
++---------------------------------+
+3 rows in set (0.00 sec)
+
+
+
+show columns from entry;
++------------------+---------------------------------+------+-----+---------+----------------+
+| Field            | Type                            | Null | Key | Default | Extra          |
++------------------+---------------------------------+------+-----+---------+----------------+
+| id               | int(11)                         | NO   | PRI | NULL    | auto_increment |
+| addressBookId    | int(11)                         | YES  |     | NULL    |                |
+| firstName        | varchar(255)                    | YES  |     | NULL    |                |
+| lastName         | varchar(255)                    | YES  |     | NULL    |                |
+| birthday         | datetime                        | YES  |     | NULL    |                |
+| type             | enum('home','work','other')     | YES  |     | NULL    |                |
+| subtype          | enum('phone','address','email') | YES  |     | NULL    |                |
+| contentLineOne   | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineTwo   | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineThree | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineFour  | varchar(255)                    | YES  |     | NULL    |                |
+| contentLineFive  | varchar(255)                    | YES  |     | NULL    |                |
++------------------+---------------------------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
+
+
+
+show columns from addressbook;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| accountId  | int(11)      | YES  |     | NULL    |                |
+| name       | varchar(255) | YES  |     | NULL    |                |
+| createdOn  | datetime     | YES  |     | NULL    |                |
+| modifiedOn | datetime     | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+show columns from account;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| email      | varchar(255) | YES  |     | NULL    |                |
+| password   | varchar(40)  | YES  |     | NULL    |                |
+| createdOn  | datetime     | YES  |     | NULL    |                |
+| modifiedOn | datetime     | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
