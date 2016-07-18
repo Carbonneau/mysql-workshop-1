@@ -1,0 +1,120 @@
+Exercise 9
+
+Create a data model representing a Barn with Chickens 🐣
+This model should provide answers to the following questions:
+How many rooster, hen and chicks existed in the Barn on a specific date
+How many chicks will come to age on a specific date
+
+
+create table poultry (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    gender ENUM('male', 'female'),
+    birthday DATETIME
+);
+
+
+show columns from poultry
+    -> ;
++----------+-----------------------+------+-----+---------+----------------+
+| Field    | Type                  | Null | Key | Default | Extra          |
++----------+-----------------------+------+-----+---------+----------------+
+| id       | int(11)               | NO   | PRI | NULL    | auto_increment |
+| gender   | enum('male','female') | YES  |     | NULL    |                |
+| birthday | datetime              | YES  |     | NULL    |                |
++----------+-----------------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+
+let's make some data:
+
+INSERT INTO poultry (birthday, gender) VALUES
+    ("2016-07-18", "male"),
+    ("2016-07-15", "female"),
+    ("2016-07-04", "female"),
+    ("2016-07-18", "male"),
+    ("2016-07-12", "female"),
+    ("2016-07-12", "male"),
+    ("2016-07-04", "female"),
+    ("2016-07-04", "male"),
+    ("2016-06-18", "female"),
+    ("2016-06-18", "male"),
+    ("2016-05-18", "female"),
+    ("2016-05-18", "male"),
+    ("2016-05-18", "female"),
+    ("2016-04-18", "male"),
+    ("2016-04-18", "female"),
+    ("2016-04-18", "male"),
+    ("2016-03-18", "female");
+    
+    
+    
++----+--------+---------------------+
+| id | gender | birthday            |
++----+--------+---------------------+
+|  1 | male   | 2016-07-18 00:00:00 |
+|  2 | female | 2016-07-15 00:00:00 |
+|  3 | female | 2016-07-04 00:00:00 |
+|  4 | male   | 2016-07-18 00:00:00 |
+|  5 | female | 2016-07-12 00:00:00 |
+|  6 | male   | 2016-07-12 00:00:00 |
+|  7 | female | 2016-07-04 00:00:00 |
+|  8 | male   | 2016-07-04 00:00:00 |
+|  9 | female | 2016-06-18 00:00:00 |
+| 10 | male   | 2016-06-18 00:00:00 |
+| 11 | female | 2016-05-18 00:00:00 |
+| 12 | male   | 2016-05-18 00:00:00 |
+| 13 | female | 2016-05-18 00:00:00 |
+| 14 | male   | 2016-04-18 00:00:00 |
+| 15 | female | 2016-04-18 00:00:00 |
+| 16 | male   | 2016-04-18 00:00:00 |
+| 17 | female | 2016-03-18 00:00:00 |
++----+--------+---------------------+
+17 rows in set, 1 warning (0.00 sec)
+
+
+
+How many rooster, hen and chicks existed in the Barn on a specific date
+SELECT * FROM poultry WHERE birthday < "specific date";
+
+
+
+How many chicks will come to age on a specific date? ie: born after 2016-06-01
+
+SELECT * FROM poultry WHERE birthday > 20160601;
+
+
++----+--------+---------------------+
+| id | gender | birthday            |
++----+--------+---------------------+
+|  1 | male   | 2016-07-18 00:00:00 |
+|  2 | female | 2016-07-15 00:00:00 |
+|  3 | female | 2016-07-04 00:00:00 |
+|  4 | male   | 2016-07-18 00:00:00 |
+|  5 | female | 2016-07-12 00:00:00 |
+|  6 | male   | 2016-07-12 00:00:00 |
+|  7 | female | 2016-07-04 00:00:00 |
+|  8 | male   | 2016-07-04 00:00:00 |
+|  9 | female | 2016-06-18 00:00:00 |
+| 10 | male   | 2016-06-18 00:00:00 |
++----+--------+---------------------+
+10 rows in set (0.00 sec)
+
+
+How many rooster, hen and chicks existed in the Barn on a specific date? 
+ie: born before 2016-06-01?
+
+SELECT * FROM poultry WHERE birthday < 20160601;
+
++----+--------+---------------------+
+| id | gender | birthday            |
++----+--------+---------------------+
+| 11 | female | 2016-05-18 00:00:00 |
+| 12 | male   | 2016-05-18 00:00:00 |
+| 13 | female | 2016-05-18 00:00:00 |
+| 14 | male   | 2016-04-18 00:00:00 |
+| 15 | female | 2016-04-18 00:00:00 |
+| 16 | male   | 2016-04-18 00:00:00 |
+| 17 | female | 2016-03-18 00:00:00 |
++----+--------+---------------------+
+7 rows in set (0.00 sec)
+
