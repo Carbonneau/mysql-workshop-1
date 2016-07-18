@@ -1,0 +1,39 @@
+Exercise 5
+
+// Create table Account for database decodemtl_addressbook
+
+CREATE TABLE account (
+    id INT AUTO_INCREMENT PRIMARY KEY
+);
+
+// Create table AddressBook for database decodemtl_addressbook
+
+CREATE TABLE addressbook (
+    id INT AUTO_INCREMENT PRIMARY KEY
+);
+
+// Create table Entry for database decodemtl_addressbook
+
+CREATE TABLE entry (
+    id INT AUTO_INCREMENT PRIMARY KEY
+);
+
+// Create table Test for database decodemtl_addressbook
+
+CREATE TABLE test (
+    id INT AUTO_INCREMENT PRIMARY KEY
+);
+
+
+show tables;
+
++---------------------------------+
+| Tables_in_decodemtl_addressbook |
++---------------------------------+
+| account                         |
+| addressbook                     |
+| entry                           |
+| test                            |
++---------------------------------+
+4 rows in set (0.00 sec)
+
